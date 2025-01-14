@@ -23,11 +23,11 @@ The EWC LSP must align with the standard protocol, OID4VCI, for issuing LPID fro
 
 The LPID issuance process is implemented by PID providers according to national law. The process may differ between member states but some verifications must be implemented in an LPID issuance process across all PID providers. These verifications include:
 
-1. **Authentication:** The natural person requesting a LPID on behalf of a legal person must ne authenticated using LoA High.
+1. **Authentication:** The natural person requesting an LPID on behalf of a legal person must be authenticated using LoA High.
 
-2. **Authorization:** The representative rights of the natural person requesting a LPID must be verified.
+2. **Authorization:** The representative rights of the natural person requesting an LPID must be verified.
 
-3. **Signing:** The natural person requesting a LPID might have to sign the LPID application. This step is **optional** and only applies if regulated in national law.
+3. **Signing:** The natural person requesting an LPID might have to sign the LPID application. This step is **optional** and only applies if regulated in national law.
 
 4. **Status:** The status of the legal person must be verified. These states are not yet regulated, but at the very least, the legal person for which an LPID is requested must be registered in an authetic source, such as a business register.
 
@@ -35,11 +35,11 @@ The issuance process can either start in:
 1. a wallet application, the grahical user interface of the wallet *or*
 2. the eService of the PID provider.
 
-The first approach requires the wallet provider to implement support for a lookup of all PID providers. It also requires the User (natural person or legal person, as defined in eIDAS2 [8]) to have a wallet solution [8] that includes a wallet application. Wallet applications are optional and not all legal persons may opt for a wallet solution that includes a graphical user interface. An end user representing the legal person chooses an PID provider in the wallet application to apply for/request an LPID from. The wallet application then redirects the end user to the eService of the PID provider for the issuance process. After completeing the eService procedure, the natural person is redirected back to the wallet application from where a offer reqest is initiated.
+The first approach requires the wallet provider to implement support for a lookup of all PID providers. It also requires the User (natural person or legal person, as defined in eIDAS2 [8]) to have a wallet solution [8] that includes a wallet application. Wallet applications are optional and not all legal persons may opt for a wallet solution that includes a graphical user interface. An end user representing the legal person chooses a PID provider in the wallet application to apply for/request an LPID from. The wallet application then redirects the end user to the eService of the PID provider for the issuance process. After completeing the eService procedure, the natural person is redirected back to the wallet application from where a offer request is initiated.
 
-The second approach has no dependency to the implementaion of the wallet or the wallet solution of the User. An end user representing the legal person goes directly to the eService of the PID provider to apply for/request an LPID. After completeing the eService procedure, the PID provider initiates a offer response to the wallet instance of the legal person which endpoint the representative of the lagal person supplied. The endpoint can be a url or a DID for instance. All communication between wallets is done in the backend.
+The second approach has no dependency to the implementaion of the wallet or the wallet solution of the User. An end user representing the legal person goes directly to the eService of the PID provider to apply for/request an LPID. After completeing the eService procedure, the PID provider initiates a offer response to the wallet instance of the legal person which endpoint the representative of the legal person supplied. The endpoint can be a url or a DID for instance. All communication between wallets is done in the backend.
 
-The picture below shows a generic outline of the LPID issuance process, the actual implemntation depends on national regulations.
+The picture below shows a generic outline of the LPID issuance process, the actual implementation depends on national regulations.
 ![Generic LPID issuance process](images/Generic%20LPID%20issuance%20process.png)
 
 *Figure 1. Generic LPID issuance process*
@@ -167,7 +167,7 @@ The sequence diagram highlights the integration of the new preliminary steps (3-
 Not included in the diagram is the revocation information that must be published to a VDR. It is the responsibility of an issuer to revoke credentials when needed, this also applies to the LPID. Revocation information can be published using the PID provider wallet or directly by the PID provider to the VDR.
 
 **Sequence diagram steps:**
-1. A natural person uses the eService of an PID Provider to apply for/request an LPID.
+1. A natural person uses the eService of a PID Provider to apply for/request an LPID.
 2. The application/request for an LPID in the eService has been approved after verification checks described in chapter 3 above. The PID provider requests the PID Provider wallet to create and send an LPID. The request sent includes the information and schema needed for credential construction and the endpoint for the Legal person wallet. The endpoint is either given by the natural person or included in the redirection url from the wallet application.
 3. Authorization request. The PID provider wallet requests the Legal person wallet for WIA, WTE, PID using the endpoint either submitted by the natural person in the first step or by information in the redirect url if the LPID process started in a wallet application with a redirect. 
 4. Authorization response. Legal person wallet returns presentations of WTE, WIA, (PID).
